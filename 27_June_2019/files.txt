@@ -1,0 +1,86 @@
+// MAP REDUCE flow in YARN
+
+https://netjs.blogspot.com/2018/04/mapreduce-flow-in-yarn.html
+https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/WritingYarnApplications.html
+https://stackoverflow.com/questions/34488647/mapreduce-job-configuration-file-location
+
+hadoop-yarn-server-resourcemanager:
+
+org.apache.hadoop.yarn.server.resourcemanager.ResourceTrackerService
+org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler
+org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSAppAttempt (and FSAppAttempt$RMContainerComparator.class)
+org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairSchedulerConfiguration
+org.apache.hadoop.yarn.server.resourcemanager.rmnode.RMNode
+org.apache.hadoop.yarn.server.resourcemanager.rmnode.RMNodeImpl
+org.apache.hadoop.yarn.server.resourcemanager.rmnode.RMNodeStatusEvent
+
+//JISHA 2
+org.apache.hadoop.yarn.server.resourcemanager.rmapp.RMApp
+org.apache.hadoop.yarn.server.resourcemanager.rmapp.RMAppImpl
+org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt
+
+
+hadoop-yarn-server-nodemanager:
+
+org.apache.hadoop.yarn.server.nodemanager.NodeStatusUpdaterImpl
+
+hadoop-yarn-server-common:
+org.apache.hadoop.yarn.server.api.record.NodeStatus
+org.apache.hadoop.yarn.server.api.record.NodeResourceStatus
+org.apache.hadoop.yarn.server.api.records.impl.pb.NodeResourceStatusPBImpl
+org.apache.hadoop.yarn.server.api.records.impl.pb.NodeStatusPBImpl
+
+hadoop-yarn-common:
+org.apache.hadoop.yarn.util.ResourceCalculatorPlugin
+org.apache.hadoop.yarn.util.LinuxResourceCalculatorPlugin
+
+
+jar cvf hadoop-yarn-server-resourcemanager-2.7.6.jar -C hadoop-yarn-server-resourcemanager-2.7.6 .
+
+jar cvf hadoop-yarn-server-nodemanager-2.7.6.jar -C hadoop-yarn-server-nodemanager-2.7.6 .
+
+jar cvf hadoop-yarn-server-common-2.7.6.jar -C hadoop-yarn-server-common-2.7.6 .
+
+jar cvf hadoop-yarn-common-2.7.6.jar -C hadoop-yarn-common-2.7.6 .
+
+hadoop jar /home/ubuntu/hadoop-2.7.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.6.jar wordcount -conf /home/ubuntu/tas.xml /home/jisha/input /home/jisha/wordcount_out4
+
+hadoop jar /home/ubuntu/hadoop-2.7.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.6.jar wordcount -D mapred.scheduler.tas.hosts=ip-172-31-44-160.us-west-2.compute.internal /home/jisha/input /home/jisha/wordcount_out4
+
+
+
+yarn.app.mapreduce.am.staging-dir +/ $USER + /.staging +/job_$<INT of Application ID>/job.xml
+/tmp/hadoop-yarn/staging
+
+
+
+// JISHA 30/11/2019
+
+https://stackoverflow.com/questions/44925074/limit-yarn-containers-programmatically
+https://people.eecs.berkeley.edu/~alig/papers/drf.pdf
+https://blog.cloudera.com/managing-cpu-resources-in-your-hadoop-yarn-clusters/
+
+
+
+hadoop-yarn-server-common
+
+org.apache.hadoop.yarn.server.utils;
+BuilderUtils.newContainer(
+
+hadoop-yarn-server-resourcemanager
+
+org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair
+
+FSAppAttempt.createContainer(
+
+30/12/2019
+
+org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair
+
+FSAppAttempt.createContainer(
+
+package org.apache.hadoop.yarn.server.resourcemanager.scheduler;
+
+SchedulerApplicationAttempt
+    - getResourceRequests
+    - getResourceUsageReport

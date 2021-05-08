@@ -1,0 +1,95 @@
+https://support.rackspace.com/how-to/installing-mysql-server-on-ubuntu/
+https://stackoverflow.com/questions/39281594/error-1698-28000-access-denied-for-user-rootlocalhost
+
+sudo apt-get update
+sudo apt-get install mysql-server
+sudo ufw allow mysql
+
+sudo mysql -u root -p
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ubuntu';
+CREATE USER 'ubuntu'@'%' IDENTIFIED BY 'ubuntu';
+GRANT ALL PRIVILEGES ON *.* TO 'ubuntu'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+exit
+
+sudo service mysql stop
+
+sudo service mysql start
+
+mysql -u ubuntu -pubuntu
+
+SELECT User, Host, authentication_string FROM mysql.user;
+exit
+
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf 
+
+change bind-address 
+
+bind-address       = 0.0.0.0
+
+sudo systemctl restart mysql.service
+
+mysql -u ubuntu -pubuntu -h ec2-52-32-141-4.us-west-2.compute.amazonaws.com
+
+
+https://github.com/datacharmer/test_db
+
+
+git clone https://github.com/datacharmer/test_db
+
+cd test_db
+
+mysql -u ubuntu -pubuntu < employees.sql
+
+mysql -u ubuntu -pubuntu < employees_partitioned.sql
+
+mysql -u ubuntu -pubuntu  -t < test_employees_md5.sql
+
+
+https://www.a2hosting.com/kb/developer-corner/mysql/restricting-mysql-port-access
+
+sudo iptables -A INPUT -p tcp --dport 3306 -s xxx.xxx.xxx.xxx -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 3306 -j DROP
+
+sudo iptables -A INPUT -p tcp --dport 3306 -s 172.31.38.16 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 3306 -s 172.31.35.68 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 3306 -s 172.31.40.13 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 3306 -s 172.31.32.199 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 3306 -s 172.31.38.207 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 3306 -s 172.31.39.168 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 3306 -s 172.31.43.46 -j ACCEPT  (myip)
+sudo iptables -A INPUT -p tcp --dport 3306 -s 14.200.144.93 -j ACCEPT  (namenode)
+sudo iptables -A INPUT -p tcp --dport 3306 -j DROP
+
+for SFTP host restriction
+
+sudo iptables -A INPUT -p tcp --dport 22 -s 172.31.38.16 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 22 -s 172.31.35.68 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 22 -s 172.31.40.13 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 22 -s 172.31.32.199 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 22 -s 172.31.38.207 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 22 -s 172.31.39.168 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 22 -s 172.31.43.46 -j ACCEPT  (namenode)
+sudo iptables -A INPUT -p tcp --dport 22 -s 14.200.144.93 -j ACCEPT (myIp)
+
+sudo iptables -A INPUT -p tcp --dport 22 -j DROP
+
+or
+
+sudo iptables -L
+
+sudo iptables -D INPUT 5
+
+sudo iptables -F 
+
+( remove rule : iptables -F  or iptables -D INPUT 5 , where 5 is the rule number)
+
+restrict connections > 1 from any IP
+
+sudo iptables -A INPUT -p tcp --syn --dport 22 -m connlimit --connlimit-above 1 --connlimit-mask 32 -j REJECT --reject-with tcp-reset
+
+sudo iptables -A INPUT -p tcp --syn --dport 3306 -m connlimit --connlimit-above 1 --connlimit-mask 32 -j REJECT --reject-with tcp-reset
+
+docker run -it -p 8888:8888 image:46da4b8a70ff6c8c952d568bb16afb7f698b608c63cbb9326392d196cccbbe89

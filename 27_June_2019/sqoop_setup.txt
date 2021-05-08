@@ -1,0 +1,149 @@
+
+wget http://mirror.intergrid.com.au/apache/sqoop/1.4.7/sqoop-1.4.7.bin__hadoop-2.6.0.tar.gz
+
+tar -zxf sqoop-1.4.7.bin__hadoop-2.6.0.tar.gz
+
+vi ~/.bashrc
+
+export SQOOP_HOME=/home/ubuntu/sqoop-1.4.7.bin__hadoop-2.6.0
+export PATH=$PATH:$SQOOP_HOME/bin
+
+export HADOOP_CLASSPATH=$HADOOP_HOME/share/hadoop/common/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/httpfs/*:$HADOOP_HOME/share/hadoop/mapreduce/*:$HADOOP_HOME/share/hadoop/yarn/*:$HADOOP_HOME/share/hadoop/tools/*
+
+source ~/.bashrc
+
+#cd $SQOOP_HOME/conf
+
+mv $SQOOP_HOME/conf/sqoop-env-template.sh $SQOOP_HOME/conf/sqoop-env.sh
+
+vi $SQOOP_HOME/conf/sqoop-env.sh
+
+#Set path to where bin/hadoop is available
+export HADOOP_COMMON_HOME=/home/ubuntu/hadoop-2.7.6
+
+#Set path to where hadoop-*-core.jar is available
+export HADOOP_MAPRED_HOME=/home/ubuntu/hadoop-2.7.6/share/hadoop/mapreduce
+
+wget http://ftp.ntu.edu.tw/MySQL/Downloads/Connector-J/mysql-connector-java-8.0.12.tar.gz  
+
+tar -zxf mysql-connector-java-8.0.12.tar.gz 
+cp mysql-connector-java-8.0.12/mysql-connector-java-8.0.12.jar $SQOOP_HOME/lib
+
+sqoop-version
+
+sqoop list-databases --connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/ --username ubuntu --password ubuntu
+
+sqoop list-tables \
+--connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/employees \
+--username ubuntu \
+--password ubuntu 
+
+FROM Local Machine:
+scp /Users/jobinantony/Jisha/JISHA/Ph.D/ForDC/WorkafterCandidacy/AWS_setup_automation/java-json-schema.jar  namenode:/home/ubuntu/sqoop-1.4.7.bin__hadoop-2.6.0/lib
+
+From Namenode:
+sqoop import \
+--connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/employees?zeroDateTimeBehavior=CONVERT_TO_NULL \
+--username ubuntu \
+--password ubuntu \
+--table wages \
+--num-mappers 48 \
+--delete-target-dir \
+--target-dir /user/sqoop/wages
+
+sqoop import \
+--connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/employees?zeroDateTimeBehavior=CONVERT_TO_NULL \
+--username ubuntu \
+--password ubuntu \
+--table employees \
+--num-mappers 48 \
+--delete-target-dir \
+--target-dir /user/sqoop/employees
+
+sqoop import --conf /home/ubuntu/tas.xml \
+--connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/employees?zeroDateTimeBehavior=CONVERT_TO_NULL \
+--username ubuntu \
+--password ubuntu \
+--table wages \
+--num-mappers 10 \
+--delete-target-dir \
+--target-dir /user/sqoop/wages
+
+sqoop import --conf /home/ubuntu/tas.xml \
+--connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/employees?zeroDateTimeBehavior=CONVERT_TO_NULL \
+--username ubuntu \
+--password ubuntu \
+--table employees \
+--num-mappers 10 \
+--delete-target-dir \
+--target-dir /user/sqoop/employees
+
+
+sqoop import --conf /home/ubuntu/tas_host_task.xml \
+--connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/employees?zeroDateTimeBehavior=CONVERT_TO_NULL \
+--username ubuntu \
+--password ubuntu \
+--table wages \
+--num-mappers 10 \
+--delete-target-dir \
+--target-dir /user/sqoop/wages
+
+sqoop import --conf /home/ubuntu/tas_host_task.xml \
+--connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/employees?zeroDateTimeBehavior=CONVERT_TO_NULL \
+--username ubuntu \
+--password ubuntu \
+--table employees \
+--num-mappers 10 \
+--delete-target-dir \
+--target-dir /user/sqoop/employees
+
+sqoop import -D yarn.scheduler.tas.hosts=ip-172-31-38-16.us-west-2.compute.internal,ip-172-31-35-68.us-west-2.compute.internal,ip-172-31-40-13.us-west-2.compute.internal,ip-172-31-32-199.us-west-2.compute.internal,ip-172-31-38-207.us-west-2.compute.internal,ip-172-31-39-168.us-west-2.compute.internal \
+--connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/employees?zeroDateTimeBehavior=CONVERT_TO_NULL \
+--username ubuntu \
+--password ubuntu \
+--table wages \
+--num-mappers 48 \
+--delete-target-dir \
+--target-dir /user/sqoop/wages
+
+sqoop job --create mysqoopemployeesjob \
+-- import \
+--connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/employees?zeroDateTimeBehavior=CONVERT_TO_NULL \
+--username ubuntu \
+--password ubuntu \
+--table employees \
+--num-mappers 48 \
+--delete-target-dir \
+--target-dir /user/sqoop/employees
+
+sqoop job --exec mysqoopemployeesjob
+
+(list any existing job :  sqoop job -list
+delete job :  sqoop job --delete mysqoopjob)
+
+
+sqoop import -D yarn.scheduler.tas.hosts=ip-172-31-33-2.us-west-2.compute.internal \
+--connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/employees?zeroDateTimeBehavior=CONVERT_TO_NULL \
+--username ubuntu \
+--password ubuntu \
+--table employees \
+--num-mappers 8 \
+--delete-target-dir \
+--target-dir /user/sqoop/employees
+
+sqoop import -conf /home/ubuntu/tas.xml \
+--connect jdbc:mysql://ec2-52-32-141-4.us-west-2.compute.amazonaws.com/employees?zeroDateTimeBehavior=CONVERT_TO_NULL \
+--username ubuntu \
+--password ubuntu \
+--table employees \
+--num-mappers 8 \
+--delete-target-dir \
+--target-dir /user/sqoop/employees
+
+
+
+hadoop jar sftpdownload.jar /home/ubuntu/input /user/jisha/sftp/output11 ec2-52-32-141-4.us-west-2.compute.amazonaws.com ubuntu ubuntu ubuntu
+
+hadoop jar sftpdownload.jar --conf /home/ubuntu/tas_host_task.xml /home/ubuntu/input /user/jisha/sftp/output_input_tas_host_task ec2-52-32-141-4.us-west-2.compute.amazonaws.com ubuntu ubuntu ubuntu
+
+hadoop jar sftpdownload.jar --conf /home/ubuntu/tas_host_task.xml /home/ubuntu/input2 /user/jisha/sftp/output_input2_tas_host_task ec2-52-32-141-4.us-west-2.compute.amazonaws.com ubuntu ubuntu ubuntu
