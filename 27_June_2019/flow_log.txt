@@ -1,0 +1,62 @@
+19-06-16 12:43:58,631 WARN  [main] util.NativeCodeLoader (NativeCodeLoader.java:<clinit>(62)) - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2019-06-16 12:43:58,717 INFO  [main] conf.Configuration (Configuration.java:getConfResourceAsInputStream(2427)) - found resource core-site.xml at file:/Users/jobinantony/Tools/Hadoop/hadoop-2.7.6-src/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/target/test-classes/core-site.xml
+2019-06-16 12:43:58,779 INFO  [main] security.Groups (Groups.java:refresh(387)) - clearing userToGroupsMap cache
+2019-06-16 12:43:58,870 INFO  [main] conf.Configuration (Configuration.java:getConfResourceAsInputStream(2427)) - found resource yarn-site.xml at file:/Users/jobinantony/Tools/Hadoop/hadoop-2.7.6-src/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/target/test-classes/yarn-site.xml
+2019-06-16 12:43:58,902 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(209)) - Registering class org.apache.hadoop.yarn.server.resourcemanager.RMFatalEventType for class org.apache.hadoop.yarn.server.resourcemanager.ResourceManager$RMFatalEventDispatcher
+2019-06-16 12:43:59,108 INFO  [main] security.NMTokenSecretManagerInRM (NMTokenSecretManagerInRM.java:<init>(75)) - NMTokenKeyRollingInterval: 86400000ms and NMTokenKeyActivationDelay: 900000ms
+2019-06-16 12:43:59,116 INFO  [main] security.RMContainerTokenSecretManager (RMContainerTokenSecretManager.java:<init>(77)) - ContainerTokenKeyRollingInterval: 86400000ms and ContainerTokenKeyActivationDelay: 900000ms
+2019-06-16 12:43:59,126 INFO  [main] security.AMRMTokenSecretManager (AMRMTokenSecretManager.java:<init>(94)) - AMRMTokenKeyRollingInterval: 86400000ms and AMRMTokenKeyActivationDelay: 900000 ms
+2019-06-16 12:43:59,176 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(209)) - Registering class org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStoreEventType for class org.apache.hadoop.yarn.server.resourcemanager.recovery.RMStateStore$ForwardingEventHandler
+2019-06-16 12:43:59,178 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(209)) - Registering class org.apache.hadoop.yarn.server.resourcemanager.NodesListManagerEventType for class org.apache.hadoop.yarn.server.resourcemanager.NodesListManager
+2019-06-16 12:43:59,178 INFO  [main] resourcemanager.ResourceManager (ResourceManager.java:createScheduler(300)) - Using Scheduler: org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler
+2019-06-16 12:43:59,250 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(209)) - Registering class org.apache.hadoop.yarn.server.resourcemanager.scheduler.event.SchedulerEventType for class org.apache.hadoop.yarn.server.resourcemanager.ResourceManager$SchedulerEventDispatcher
+2019-06-16 12:43:59,251 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(209)) - Registering class org.apache.hadoop.yarn.server.resourcemanager.rmapp.RMAppEventType for class org.apache.hadoop.yarn.server.resourcemanager.ResourceManager$ApplicationEventDispatcher
+2019-06-16 12:43:59,253 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(209)) - Registering class org.apache.hadoop.yarn.server.resourcemanager.rmapp.attempt.RMAppAttemptEventType for class org.apache.hadoop.yarn.server.resourcemanager.ResourceManager$ApplicationAttemptEventDispatcher
+2019-06-16 12:43:59,254 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(209)) - Registering class org.apache.hadoop.yarn.server.resourcemanager.rmnode.RMNodeEventType for class org.apache.hadoop.yarn.server.resourcemanager.ResourceManager$NodeEventDispatcher
+2019-06-16 12:43:59,349 WARN  [main] impl.MetricsConfig (MetricsConfig.java:loadFirst(125)) - Cannot locate configuration: tried hadoop-metrics2-resourcemanager.properties,hadoop-metrics2.properties
+2019-06-16 12:43:59,434 INFO  [main] impl.MetricsSystemImpl (MetricsSystemImpl.java:startTimer(376)) - Scheduled snapshot period at 10 second(s).
+2019-06-16 12:43:59,434 INFO  [main] impl.MetricsSystemImpl (MetricsSystemImpl.java:start(192)) - ResourceManager metrics system started
+2019-06-16 12:43:59,464 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(209)) - Registering class org.apache.hadoop.yarn.server.resourcemanager.RMAppManagerEventType for class org.apache.hadoop.yarn.server.resourcemanager.RMAppManager
+2019-06-16 12:43:59,475 INFO  [main] event.AsyncDispatcher (AsyncDispatcher.java:register(209)) - Registering class org.apache.hadoop.yarn.server.resourcemanager.amlauncher.AMLauncherEventType for class org.apache.hadoop.yarn.server.resourcemanager.amlauncher.ApplicationMasterLauncher
+2019-06-16 12:43:59,478 INFO  [main] resourcemanager.RMNMInfo (RMNMInfo.java:<init>(63)) - Registered RMNMInfo MBean
+2019-06-16 12:43:59,481 INFO  [main] security.YarnAuthorizationProvider (YarnAuthorizationProvider.java:getInstance(57)) - org.apache.hadoop.yarn.security.ConfiguredYarnAuthorizer is instiantiated.
+2019-06-16 12:43:59,482 INFO  [main] util.HostsFileReader (HostsFileReader.java:refresh(131)) - Refreshing hosts (include/exclude) list
+2019-06-16 12:43:59,524 WARN  [main] fair.AllocationFileLoaderService (AllocationFileLoaderService.java:getAllocationFile(179)) - fair-scheduler.xml not found on the classpath.
+2019-06-16 12:43:59,551 INFO  [main] metrics.SystemMetricsPublisher (SystemMetricsPublisher.java:serviceInit(93)) - YARN system metrics publishing service is not enabled
+2019-06-16 12:43:59,551 INFO  [main] security.RMContainerTokenSecretManager (RMContainerTokenSecretManager.java:rollMasterKey(105)) - Rolling master-key for container-tokens
+2019-06-16 12:43:59,559 INFO  [main] security.NMTokenSecretManagerInRM (NMTokenSecretManagerInRM.java:rollMasterKey(95)) - Rolling master-key for nm-tokens
+2019-06-16 12:43:59,560 INFO  [main] resourcemanager.TestResourceManager (TestResourceManager.java:testResourceAllocation(90)) - --- START: testResourceAllocation ---
+2019-06-16 12:43:59,636 INFO  [main] util.RackResolver (RackResolver.java:coreResolve(109)) - Resolved host1 to /default-rack
+2019-06-16 12:43:59,639 INFO  [main] resourcemanager.ResourceTrackerService (ResourceTrackerService.java:registerNodeManager(345)) - NodeManager from node host1(cmPort: 1234 httpPort: 2345) registered with capability: <memory:4096, vCores:4>, assigned nodeId host1:1234
+2019-06-16 12:43:59,642 INFO  [main] fair.FairScheduler (FairScheduler.java:addNode(850)) - Added node host1:1234 cluster capacity: <memory:4096, vCores:4>
+2019-06-16 12:43:59,646 INFO  [main] util.RackResolver (RackResolver.java:coreResolve(109)) - Resolved host2 to /default-rack
+2019-06-16 12:43:59,647 INFO  [main] resourcemanager.ResourceTrackerService (ResourceTrackerService.java:registerNodeManager(345)) - NodeManager from node host2(cmPort: 1234 httpPort: 2345) registered with capability: <memory:2048, vCores:2>, assigned nodeId host2:1234
+2019-06-16 12:43:59,647 INFO  [main] fair.FairScheduler (FairScheduler.java:addNode(850)) - Added node host2:1234 cluster capacity: <memory:6144, vCores:6>
+2019-06-16 12:43:59,667 INFO  [main] resourcemanager.ClientRMService (ClientRMService.java:getNewApplicationId(289)) - Allocated new applicationId: 1
+2019-06-16 12:43:59,785 WARN  [main] rmapp.RMAppImpl (RMAppImpl.java:<init>(395)) - The specific max attempts: 0 for application: 1 is invalid, because it is out of the range [1, 2]. Use the global max attempts instead.
+2019-06-16 12:43:59,786 INFO  [main] resourcemanager.ClientRMService (ClientRMService.java:submitApplication(583)) - Application with id 1 submitted by user jobinantony
+2019-06-16 12:43:59,793 INFO  [main] resourcemanager.RMAuditLogger (RMAuditLogger.java:logSuccess(158)) - USER=jobinantony	OPERATION=Submit Application Request	TARGET=ClientRMService	RESULT=SUCCESS	APPID=application_1560653038711_0001
+2019-06-16 12:43:59,802 INFO  [main] fair.FairScheduler (FairScheduler.java:addApplication(633)) - Accepted application application_1560653038711_0001 from user: user, in queue: default, currently num of applications: 1
+2019-06-16 12:43:59,830 INFO  [main] fair.FairScheduler (FairScheduler.java:addApplicationAttempt(678)) - Added Application Attempt appattempt_1560653038711_0001_000000 to scheduler from user: user
+2019-06-16 12:43:59,833 INFO  [main] resourcemanager.Task (Task.java:<init>(67)) - Task 1 added to application application_1560653038711_0001 with 2 hosts, 1 racks
+2019-06-16 12:43:59,833 INFO  [main] resourcemanager.Application (Application.java:addTask(219)) - Added task 1 to application application_1560653038711_0001 at priority 1
+-=======appattempt_1560653038711_0001_000000
+----------null
+2019-06-16 12:43:59,837 INFO  [main] resourcemanager.Application (Application.java:assign(343)) - Application application_1560653038711_0001 assigned 0/0
+2019-06-16 12:47:34,390 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(576)) - JISHA: available memory 4096
+2019-06-16 12:50:09,873 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(577)) - JISHA: total memory 4096
+2019-06-16 12:50:10,395 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(579)) - JISHA: available core4
+2019-06-16 12:50:10,778 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(580)) - JISHA: total core4
+2019-06-16 12:50:11,173 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(583)) - JISHA: Node name : host1
+2019-06-16 12:50:11,585 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(584)) - JISHA: Application name : application_1560653038711_0001
+2019-06-16 12:50:11,954 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(585)) - JISHA: Allowed nodes : [ALL]
+2019-06-16 12:50:14,278 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(595)) - JISHA host1 is present in the allowed Nodes list
+2019-06-16 12:50:15,341 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(613)) - JISHA: host1 application_1560653038711_0001 liveContainers.size() : 0
+2019-06-16 12:50:15,533 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(614)) - JISHA: host1 application_1560653038711_0001 Active worker containers : 0
+2019-06-16 12:50:16,047 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(618)) - JISHA: host1 application_1560653038711_0001 yarn.scheduler.tas.tasks.maximum : -1
+2019-06-16 12:50:17,878 INFO  [main] fair.FSAppAttempt (FSAppAttempt.java:assignContainer(628)) - JISHA: host1 application_1560653038711_0001 Active worker containers less than maximum allowed tasks limit per node.
+2019-06-16 12:50:23,357 INFO  [main] rmcontainer.RMContainerImpl (RMContainerImpl.java:handle(410)) - container_1560653038711_0001_00_000001 Container Transitioned from NEW to ALLOCATED
+2019-06-16 12:50:23,358 INFO  [main] resourcemanager.RMAuditLogger (RMAuditLogger.java:logSuccess(116)) - USER=user	OPERATION=AM Allocated Container	TARGET=SchedulerApp	RESULT=SUCCESS	APPID=application_1560653038711_0001	CONTAINERID=container_1560653038711_0001_00_000001
+2019-06-16 12:50:23,359 INFO  [main] scheduler.SchedulerNode (SchedulerNode.java:allocateContainer(153)) - Assigned container container_1560653038711_0001_00_000001 of capacity <memory:1024, vCores:1> on host host1:1234, which has 1 containers, <memory:1024, vCores:1> used and <memory:3072, vCores:3> available after allocation
+2019-06-16 12:50:34,923 INFO  [main] resourcemanager.ResourceManager (ResourceManager.java:transitionToStandby(1043)) - Transitioning to standby state
+2019-06-16 12:50:34,923 INFO  [main] resourcemanager.ResourceManager (ResourceManager.java:transitionToStandby(1050)) - Transitioned to standby state

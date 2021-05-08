@@ -1,0 +1,39 @@
+
+https://acadgild.com/blog/streaming-twitter-data-using-flume
+
+https://developer.twitter.com/en/apps/16065218
+
+This application is part of my research project. This application will connect Twitter from Apache Flume and download search keyword twitter data to Hadoop HDFS  using YARN application. Further the downloaded data will be used for analytics purpose. The application mainly focuses on the distributed download of Flume with the help of Twitter API.
+
+Consumer API keys
+
+V5yo4g6uYJjr4ewZiybSbgGdz (API key)
+
+zZLxF9KZwney5JwRTsjeWE9tdh3eW35o0nekYsG4AcTqJLatUv (API secret key)
+
+Access token & access token secret
+
+1026808967215820800-yqYOfYjChv8YTACicD0UPfkGDA4bFd (Access token)
+
+QTnkhjOJgmC2asW4EeReQ9bV48RGb3dDwEMCs3VY524cY (Access token secret)
+
+wget http://archive.apache.org/dist/flume/1.6.0/apache-flume-1.6.0-bin.tar.gz
+
+tar xzf apache-flume-1.6.0-bin.tar.gz
+
+vi ~/.bashrc
+
+export FLUME_HOME=/home/ubuntu/apache-flume-1.6.0-bin
+export PATH=$PATH:$FLUME_HOME/bin
+
+open  $CURR_DIR/conf/fume.conf in local machine and update 
+
+Consumer key, secret key, access token, access token secret and namenode_dns
+
+scp conf/flume.conf namenode:/home/ubuntu/apache-flume-1.6.0-bin/conf
+
+hadoop fs -mkdir -p /user/flume/tweets
+
+flume-ng agent -n TwitterAgent -f /home/ubuntu/apache-flume-1.6.0-bin/conf/flume.conf
+ 
+

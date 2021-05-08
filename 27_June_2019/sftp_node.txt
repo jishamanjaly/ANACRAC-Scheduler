@@ -1,0 +1,23 @@
+create an instance in AWS
+connect using command 
+
+ssh -i ~/.ssh/JISHA-YARN-CLUSTER.pem ubuntu@<PUBLIC DNS OF machine>
+
+sudo vi /etc/ssh/sshd_config
+
+Find the Line containing “PasswordAuthentication” parameter and change its value from “no” to “yes“
+
+PasswordAuthentication yes
+
+sudo passwd ubuntu
+
+ubuntu
+
+sudo service sshd restart
+
+logout
+
+ssh ubuntu@<PUBLIC DNS OF machine>
+
+
+hadoop jar sftpdownload.jar /home/ubuntu/input /user/jisha/sftp/output1 ec2-52-32-141-4.us-west-2.compute.amazonaws.com ubuntu ubuntu ubuntu
