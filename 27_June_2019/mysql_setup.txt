@@ -18,7 +18,7 @@ sudo service mysql stop
 
 sudo service mysql start
 
-mysql -u ubuntu -pubuntu
+mysql -u ubuntu -p
 
 SELECT User, Host, authentication_string FROM mysql.user;
 exit
@@ -31,7 +31,7 @@ bind-address       = 0.0.0.0
 
 sudo systemctl restart mysql.service
 
-mysql -u ubuntu -pubuntu -h ec2-52-32-141-4.us-west-2.compute.amazonaws.com
+mysql -u ubuntu -p -h ec2-52-32-141-4.us-west-2.compute.amazonaws.com
 
 
 https://github.com/datacharmer/test_db
